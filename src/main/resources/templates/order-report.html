@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Reporte de Orden - Delivery Routes</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #4CAF50;
+        }
+        .title {
+            font-size: 24px;
+            color: #4CAF50;
+            margin-bottom: 10px;
+        }
+        .order-info {
+            margin-bottom: 30px;
+            padding: 15px;
+            background-color: #f5f5f5;
+            border-radius: 5px;
+        }
+        .info-row {
+            margin: 10px 0;
+        }
+        .label {
+            font-weight: bold;
+            display: inline-block;
+            width: 150px;
+        }
+        .value {
+            display: inline-block;
+        }
+        .vehicle-info {
+            margin-bottom: 30px;
+            padding: 15px;
+            background-color: #e3f2fd;
+            border-radius: 5px;
+        }
+        .points-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 30px;
+        }
+        .points-table th, .points-table td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        .points-table th {
+            background-color: #4CAF50;
+            color: white;
+        }
+        .points-table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        .map-container {
+            margin: 30px 0;
+            text-align: center;
+        }
+        .map-image {
+            max-width: 100%;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .footer {
+            margin-top: 50px;
+            text-align: center;
+            font-size: 12px;
+            color: #999;
+            border-top: 1px solid #ddd;
+            padding-top: 20px;
+        }
+        .status-PENDING { color: #ff9800; font-weight: bold; }
+        .status-IN_PROGRESS { color: #2196f3; font-weight: bold; }
+        .status-COMPLETED { color: #4caf50; font-weight: bold; }
+        .status-CANCELLED { color: #f44336; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="title">Delivery Routes - Reporte de Orden</div>
+        <div>Documento generado el: <span th:text="${#dates.format(#dates.createNow(), 'dd/MM/yyyy HH:mm:ss')}"></span></div>
+    </div>
+
+    <div class="order-info">
+        <h3>Información de la Orden</h3>
+        <div class="info-row">
+            <span class="label">ID de Orden:</span>
+            <span class="value" th:text="${order.id}"></span>
+        </div>
+        <div class="info-row">
+            <span class="label">Estado:</span>
+            <span class="value" th:class="'value status-' + ${order.status}" th:text="${order.status}"></span>
+        </div>
+        <div class="info-row">
+            <span class="label">Fecha de Creación:</span>
+            <span class="value" th:text="${#dates.format(order.createdAt, 'dd/MM/yyyy HH:mm:ss')}"></span>
+        </div>
+    </div>
+
+    <div class="vehicle-info" th:if="${order.vehicle != null}">
+        <h3>Vehículo Asignado</h3>
+        <div class="info-row">
+            <span class="label">Patente:</span>
+            <span class="value" th:text="${order.vehicle.plate}"></span>
+        </div>
+        <div class="info-row">
+            <span class="label">Modelo:</span>
+            <span class="value" th:text="${order.vehicle.model}"></span>
+        </div>
+        <div class="info-row">
+            <span class="label">Estado del Vehículo:</span>
+            <span class="value" th:text="${order.vehicle.status}"></span>
+        </div>
+    </div>
+
+    <h3>Puntos de Entrega</h3>
+    <table class="points-table">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Dirección</th>
+                <th>Latitud</th>
+                <th>Longitud</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="point, iterStat : ${order.deliveryPoints}">
+                <td th:text="${iterStat.count}"></td>
+                <td th:text="${point.address}"></td>
+                <td th:text="${point.latitude}"></td>
+                <td th:text="${point.longitude}"></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="map-container" th:if="${mapImageUrl}">
+        <h3>Mapa de Ruta</h3>
+        <img class="map-image" th:src="${mapImageUrl}" alt="Mapa de la ruta"/>
+        <p>Ruta optimizada para la entrega</p>
+    </div>
+
+    <div class="footer">
+        <p>Este documento es generado automáticamente por el sistema Delivery Routes</p>
+        <p>Para cualquier consulta, contacte a soporte@deliveryroutes.com</p>
+    </div>
+</body>
+</html>
