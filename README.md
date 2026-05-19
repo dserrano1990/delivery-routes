@@ -215,8 +215,6 @@ El proyecto incluye generación de reportes PDF para órdenes utilizando:
 
 * OpenPDF
 
-Los reportes se generan dinámicamente desde plantillas HTML.
-
 ---
 
 # Validaciones
