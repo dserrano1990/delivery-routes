@@ -190,7 +190,7 @@ POST /login
 ```json
 {
   "username": "admin",
-  "password": "123456"
+  "password": "admin123"
 }
 ```
 
