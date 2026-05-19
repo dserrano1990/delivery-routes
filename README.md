@@ -134,7 +134,8 @@ La aplicación utiliza Spring Security con autenticación basada en JWT.
 ## Clonar repositorio
 
 ```bash
-git clone <repository-url>
+git clone https://github.com/dserrano1990/delivery-routes.git
+cd delivery-routes
 ```
 
 ## Configurar base de datos
