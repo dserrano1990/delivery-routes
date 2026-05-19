@@ -106,13 +106,14 @@ La aplicación utiliza Spring Security con autenticación basada en JWT.
 
 ## Usuarios
 
-| Método | Endpoint          | Descripción            |
-| ------ | ----------------- | ---------------------- |
-| GET    | `/api/users`      | Obtener usuarios       |
-| GET    | `/api/users/{id}` | Obtener usuario por ID |
-| POST   | `/api/users`      | Crear usuario          |
-| PUT    | `/api/users/{id}` | Actualizar usuario     |
-| DELETE | `/api/users/{id}` | Eliminar usuario       |
+| Método | Endpoint              | Descripción            |
+| ------ | --------------------- | ---------------------- |
+| GET    | `/api/users`          | Obtener usuarios       |
+| GET    | `/api/users/{id}`     | Obtener usuario por ID |
+| POST   | `/api/users`          | Crear usuario          |
+| PUT    | `/api/users/{id}`     | Actualizar usuario     |
+| DELETE | `/api/users/{id}`     | Eliminar usuario       |
+| POST   | `/api/users/register` | Registrar usuario      |
 
 ## Reportes
 
