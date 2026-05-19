@@ -16,7 +16,6 @@ El proyecto implementa autenticación JWT, control de roles, generación de repo
 * MySQL
 * Maven
 * OpenPDF
-* Flying Saucer PDF
 * Jsoup
 
 ---
@@ -215,7 +214,6 @@ Authorization: Bearer jwt_token
 El proyecto incluye generación de reportes PDF para órdenes utilizando:
 
 * OpenPDF
-* Flying Saucer
 
 Los reportes se generan dinámicamente desde plantillas HTML.
 
